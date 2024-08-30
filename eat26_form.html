@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAT-26 Questionnaire</title>
+</head>
+<body>
+    <form id="eat26">
+        <h2>EAT-26 Questionnaire</h2>
+        
+        <p>1. I am terrified about being overweight.</p>
+        <label><input type="radio" name="q1" value="3"> Always</label>
+        <label><input type="radio" name="q1" value="2"> Frequently</label>
+        <label><input type="radio" name="q1" value="1"> Sometimes</label>
+        <label><input type="radio" name="q1" value="0"> Rarely</label>
+        <label><input type="radio" name="q1" value="0"> Never</label>
+        
+        <!-- Repetir para as 26 questões -->
+
+        <button type="button" onclick="calculateEAT26()">Submit</button>
+        
+        <div id="result"></div>
+    </form>
+
+    <script>
+        function calculateEAT26() {
+            let score = 0;
+            const answers = document.querySelectorAll('input[type="radio"]:checked');
+            
+            answers.forEach((answer) => {
+                score += parseInt(answer.value);
+            });
+            
+            document.getElementById("result").innerHTML = "Your EAT-26 score is: " + score;
+            
+            if(score >= 20) {
+                document.getElementById("result").innerHTML += "<p>You may be at risk for an eating disorder. Please seek professional help.</p>";
+            } else {
+                document.getElementById("result").innerHTML += "<p>No significant risk detected.</p>";
+            }
+        }
+    </script>
+</body>
+</html>
